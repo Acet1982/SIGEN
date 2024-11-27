@@ -1,4 +1,14 @@
-import { Bolt, LayoutDashboard, LogOut, UserCog, Users } from "lucide-react";
+import {
+  ChartPie,
+  Bolt,
+  FileChartColumn,
+  LayoutDashboard,
+  LogOut,
+  UserCog,
+  Users,
+  MapPinHouse,
+  UserPen,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const ItemsSidebar = () => {
@@ -10,70 +20,70 @@ export const ItemsSidebar = () => {
           <li>
             <Link
               to="/dashboard"
-              className="flex items-center gap-2 hover:bg-purple-600 p-4 text-gray-500 hover:text-white rounded-lg transition-colors font-semibold"
+              className="flex items-center gap-2 hover:bg-purple-600 p-3 text-gray-500 hover:text-white rounded-lg transition-colors duration-300 text-md font-semibold mt-2"
             >
-              <LayoutDashboard />
+              <LayoutDashboard size={"18px"} />
               Dashboard
             </Link>
           </li>
 
           <li>
             <Link
-              to="/dashboard"
-              className="flex items-center gap-2 hover:bg-purple-600 p-4 text-gray-500 hover:text-white rounded-lg transition-colors font-semibold"
+              to="/administrators"
+              className="flex items-center gap-2 hover:bg-purple-600 p-3 text-gray-500 hover:text-white rounded-lg transition-colors duration-300 font-semibold mt-1"
             >
-              <UserCog />
-              Administrator
+              <UserCog size={"18px"} />
+              Administrators
             </Link>
           </li>
 
           <li>
             <Link
-              to="/dashboard"
-              className="flex items-center gap-2 hover:bg-purple-600 p-4 text-gray-500 hover:text-white rounded-lg transition-colors font-semibold"
+              to="/coordinators"
+              className="flex items-center gap-2 hover:bg-purple-600 p-3 text-gray-500 hover:text-white rounded-lg transition-colors duration-300 font-semibold mt-1"
             >
-              <Users />
+              <UserPen size={"18px"} />
               Coordinators
             </Link>
           </li>
 
           <li>
             <Link
-              to="/dashboard"
-              className="flex items-center gap-2 hover:bg-purple-600 p-4 text-gray-500 hover:text-white rounded-lg transition-colors font-semibold"
+              to="/employees"
+              className="flex items-center gap-2 hover:bg-purple-600 p-3 text-gray-500 hover:text-white rounded-lg transition-colors duration-300 font-semibold mt-1"
             >
-              <LayoutDashboard />
+              <Users size={"18px"} />
+              Employees
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              to="/payrolls"
+              className="flex items-center gap-2 hover:bg-purple-600 p-3 text-gray-500 hover:text-white rounded-lg transition-colors duration-300 font-semibold mt-1"
+            >
+              <FileChartColumn size={"18px"} />
               Payrolls
             </Link>
           </li>
 
           <li>
             <Link
-              to="/dashboard"
-              className="flex items-center gap-2 hover:bg-purple-600 p-4 text-gray-500 hover:text-white rounded-lg transition-colors font-semibold"
+              to="/consolidated"
+              className="flex items-center gap-2 hover:bg-purple-600 p-3 text-gray-500 hover:text-white rounded-lg transition-colors duration-300 font-semibold mt-1"
             >
-              <LayoutDashboard />
+              <ChartPie size={"18px"} />
               Consolidated
             </Link>
           </li>
 
           <li>
             <Link
-              to="/dashboard"
-              className="flex items-center gap-2 hover:bg-purple-600 p-4 text-gray-500 hover:text-white rounded-lg transition-colors font-semibold"
+              to="/sites"
+              className="flex items-center gap-2 hover:bg-purple-600 p-3 text-gray-500 hover:text-white rounded-lg transition-colors duration-300 font-semibold mt-1"
             >
-              <LayoutDashboard />
+              <MapPinHouse size={"18px"} />
               Sites
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              to="/dashboard"
-              className="flex items-center gap-2 hover:bg-purple-600 p-4 text-gray-500 hover:text-white rounded-lg transition-colors font-semibold"
-            >
-              <LayoutDashboard />
-              Dashboard
             </Link>
           </li>
         </ul>
@@ -82,17 +92,17 @@ export const ItemsSidebar = () => {
       {/* Contenedor del botón cerrar sesión */}
       <div className="flex flex-col gap-4 border-t">
         <Link
-          to="/dashboard"
-          className="flex items-center gap-2 hover:bg-purple-600 p-3 text-gray-500 hover:text-white rounded-lg transition-colors font-semibold mt-1"
+          to="/settings"
+          className="flex items-center gap-2 hover:bg-purple-600 p-3 text-gray-500 hover:text-white rounded-lg transition-colors duration-300 font-semibold mt-1"
         >
-          <Bolt />
+          <Bolt size={"18px"} />
           Ajustes
         </Link>
         <Link
-          to="/dashboard"
-          className="flex items-center gap-2 hover:bg-purple-600 p-3 text-gray-500 hover:text-white rounded-lg transition-colors font-semibold"
+          to="/logout"
+          className="flex items-center gap-2 hover:bg-purple-600 p-3 text-gray-500 hover:text-white rounded-lg transition-colors duration-300 font-semibold"
         >
-          <LogOut />
+          <LogOut size={"18px"} />
           LogOut
         </Link>
       </div>

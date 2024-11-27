@@ -1,5 +1,5 @@
 import { Layout } from "./Layout";
-import { AllPayrolls } from "../components/AllPayrolls";
+import { AllPayrolls } from "../sections/AllPayrolls";
 
 export const Payrolls = () => {
   return (

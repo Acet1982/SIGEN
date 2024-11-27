@@ -19,13 +19,16 @@ export const Header = () => {
         <ul className="flex items-center gap-4">
           <li>
             <Link to="/" className="relative">
-              <Bell />
-              <Dot className=" text-xs absolute -right-2 -top-2  text-red-500" />
+              <Bell size={"18px"} />
+              <Dot
+                className=" text-xs absolute -right-4 -top-4  text-red-500"
+                size={"40px"}
+              />
             </Link>
           </li>
           <li>
             <Link to="/" className="flex items-center gap-1">
-              Alejandro Developer <ChevronDown />
+              Alejandro Developer <ChevronDown size={"18px"} />
             </Link>
           </li>
         </ul>

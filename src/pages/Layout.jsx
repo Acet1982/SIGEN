@@ -15,9 +15,9 @@ export const Layout = ({ children }) => {
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-6">
       {/* Sidebar */}
       <div
-        className={`fixed lg:static w-[81%] md:w-[50%] lg:w-full top-0 z-50 bg-white transition-all ${
+        className={`fixed lg:static w-[78%] md:w-[50%] lg:w-full top-0 z-50 bg-white transition-all ${
           sidebar ? "-left-0 overflow-y-scroll" : "-left-full"
-        } w-full h-full col-span-1 p-8 border-r`}
+        } w-full h-full col-span-1 p-6 border-r`}
       >
         <Sidebar />
       </div>
