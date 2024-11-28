@@ -59,7 +59,7 @@ export const ModalUniversal = () => {
       });
     } catch (error) {
       console.log(error);
-      return console.error({ error: "error al intenter registar al usuario" });
+      return console.log("error al intenter registar al usuario");
     }
   };
 

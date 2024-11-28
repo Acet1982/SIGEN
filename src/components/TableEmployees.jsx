@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useFetchToken } from "../hooks/useFetchToken.jsx";
 import { fetchData } from "../hooks/fetchData.jsx";
 import { EditIcon } from "./UI/Icons/EditIcon";
-import { DeleteIcon } from "./UI/Icons/DeleteIcon";
 import PropTypes from "prop-types";
 import {
   Table,
@@ -14,6 +13,8 @@ import {
   Tooltip,
 } from "@nextui-org/react";
 import { UserPen } from "lucide-react";
+import { ModalBasic } from "./ModalBasic.jsx";
+import { DeleteIcon } from "./UI/Icons/DeleteIcon.jsx";
 
 const URL_USERS = "http://localhost:5000/api/enova/users/";
 
@@ -22,6 +23,18 @@ export const TableEmployees = ({ enpoint }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Control del modal
+  const [selectedUid, setSelectedUid] = useState(null); // UID del usuario seleccionado
+
+  const handleOpenModal = (uid) => {
+    setSelectedUid(uid);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedUid(null);
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     if (!token) return;
@@ -50,13 +63,15 @@ export const TableEmployees = ({ enpoint }) => {
   if (error) {
     return <div>Error: {error}</div>;
   }
+
   return (
     <div className="flex flex-col gap-3">
+      {/* Tabla de usuarios */}
       <Table
         color="secondary"
         selectionMode="single"
         defaultSelectedKeys={["0"]}
-        aria-label="Example static collection table"
+        aria-label="Tabla de empleados"
       >
         <TableHeader>
           <TableColumn>NOMBRE</TableColumn>
@@ -84,7 +99,10 @@ export const TableEmployees = ({ enpoint }) => {
                     </span>
                   </Tooltip>
                   <Tooltip color="danger" content="Eliminar usuario">
-                    <span className="text-lg text-danger cursor-pointer active:opacity-50">
+                    <span
+                      onClick={() => handleOpenModal(user.uid)}
+                      className="text-lg text-danger cursor-pointer active:opacity-50"
+                    >
                       <DeleteIcon />
                     </span>
                   </Tooltip>
@@ -94,6 +112,15 @@ export const TableEmployees = ({ enpoint }) => {
           ))}
         </TableBody>
       </Table>
+
+      {/* Modal para confirmar eliminación */}
+      {isModalOpen && (
+        <ModalBasic
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          uid={selectedUid}
+        />
+      )}
     </div>
   );
 };
