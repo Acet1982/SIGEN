@@ -2,10 +2,13 @@ import { FilterUniversal } from "../components/FilterUniversal";
 import { TitlePages } from "../components/UI/TittlePages";
 import { TableUsers } from "../components/TableUsers";
 import { DescriptionPage } from "../components/UI/DescriptionPage";
+import { ModalUniversal } from "../components/ModalUniversal";
 
 export const AllAdmins = () => {
   return (
     <>
+      <ModalUniversal />
+
       {/* Componente título de página */}
       <TitlePages title={"All Administrators"} />
 

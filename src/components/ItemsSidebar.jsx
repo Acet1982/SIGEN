@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
   ChartPie,
@@ -13,11 +13,13 @@ import {
 } from "lucide-react";
 
 export const ItemsSidebar = () => {
+  const navigate = useNavigate();
   // Función para realizar el logout
   const logOut = async () => {
     await axios.get(`http://localhost:5000/api/enova/users/logout`, {
       withCredentials: true,
     });
+    navigate("/");
   };
 
   return (

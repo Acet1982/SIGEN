@@ -22,7 +22,7 @@ export const FormLogin = () => {
     setError("");
 
     try {
-      const res = await axios.post(
+      await axios.post(
         "http://localhost:5000/api/enova/users/login",
         {
           email,
@@ -32,8 +32,6 @@ export const FormLogin = () => {
           withCredentials: true,
         }
       );
-
-      console.log(res.data);
       navigate("/dashboard");
     } catch (error) {
       if (error.response) {
