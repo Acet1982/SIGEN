@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useState } from "react";
 import { ButtonSingle } from "./UI/ButtonSingle";
 import { InputPassword } from "./UI/InputPassword";
 import { InputSingle } from "./UI/InputSingle";
+import axios from "axios";
+
+// const URL_USERS = "http://localhost:5000/api/enova/users/";
 
 export const FormLogin = () => {
   const [email, setEmail] = useState("");
@@ -35,7 +37,7 @@ export const FormLogin = () => {
       navigate("/dashboard");
     } catch (error) {
       if (error.response) {
-        setMsg(error.response.data.msg);
+        setMsg(error.response.data.error);
       } else {
         setMsg("Error en el servidor");
       }

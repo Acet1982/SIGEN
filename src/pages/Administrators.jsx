@@ -1,10 +1,10 @@
-import { TitlePages } from "../components/UI/TittlePages";
+import { AllAdmins } from "../sections/AllAdmins";
 import { Layout } from "./Layout";
 
 export const Administrators = () => {
   return (
     <Layout>
-      <TitlePages title="Administrators" />
+      <AllAdmins />
     </Layout>
   );
 };

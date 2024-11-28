@@ -1,7 +1,7 @@
 import { TitlePages } from "../components/UI/TittlePages";
 import { FilterPayroll } from "../components/FilterPayroll";
 import { FilterApplied } from "../components/FilterApplied";
-import { DescriptionPage } from "../components/DescriptionPage";
+import { DescriptionPage } from "../components/UI/DescriptionPage";
 import { CardPayroll } from "../components/CardPayroll";
 
 export const AllPayrolls = () => {
@@ -17,12 +17,10 @@ export const AllPayrolls = () => {
       <FilterApplied />
 
       {/* Componente resultados */}
-      <DescriptionPage />
+      <DescriptionPage description={"Nóminas publicadas!"} by={"Mes"} />
 
       {/* Componente tarjetas de nóminas */}
-      <CardPayroll />
-      <CardPayroll />
-      <CardPayroll />
+      <CardPayroll enpoint="payrolls" />
     </>
   );
 };

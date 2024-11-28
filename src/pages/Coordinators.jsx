@@ -1,10 +1,10 @@
-import { TitlePages } from "../components/UI/TittlePages";
+import { AllCoordinators } from "../sections/AllCoordinators";
 import { Layout } from "./Layout";
 
 export const Coordinators = () => {
   return (
     <Layout>
-      <TitlePages title="Coordinators" />
+      <AllCoordinators />
     </Layout>
   );
 };

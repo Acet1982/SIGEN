@@ -4,11 +4,14 @@ import PropTypes from "prop-types";
 export const InputSearch = ({ placeholder, rounded, colorIcons }) => {
   return (
     <div className="relative ">
-      <Search size={"18px"} className={`absolute left-2 top-3 text-[5px] ${colorIcons}` } />
+      <Search
+        size={"18px"}
+        className={`absolute left-2 top-3 text-[5px] ${colorIcons}`}
+      />
       <input
         placeholder={placeholder}
         type="text"
-        className={`py-2 pl-8 pr-4 outline-none ${rounded}  w-full bg-slate-50 `}
+        className={`py-2 pl-8 pr-4 outline-none ${rounded}  w-full bg-white rounded-lg `}
       />
     </div>
   );

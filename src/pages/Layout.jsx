@@ -30,7 +30,7 @@ export const Layout = ({ children }) => {
       {/* Content */}
       <div className="col-span-5">
         <Header />
-        <div className="p-4 md:p-8 lg:p-12 bg-gray-100">{children}</div>
+        <div className="h-[680px] p-4 md:p-8 lg:p-12 bg-gray-100">{children}</div>
       </div>
     </div>
   );

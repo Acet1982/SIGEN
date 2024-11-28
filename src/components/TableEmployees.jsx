@@ -16,16 +16,14 @@ import {
 
 const URL_USERS = "http://localhost:5000/api/enova/users/";
 
-export const TableUsers = ({ enpoint }) => {
+export const TableEmployees = ({ enpoint }) => {
   const token = useFetchToken();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedColor] = useState("warning");
 
   useEffect(() => {
     if (!token) return;
-
     const loadUsers = async () => {
       try {
         const result = await fetchData(`${URL_USERS}${enpoint}`, {
@@ -51,11 +49,10 @@ export const TableUsers = ({ enpoint }) => {
   if (error) {
     return <div>Error: {error}</div>;
   }
-
   return (
     <div className="flex flex-col gap-3">
       <Table
-        color={selectedColor}
+        color="warning"
         selectionMode="single"
         defaultSelectedKeys={["0"]}
         aria-label="Example static collection table"
@@ -95,6 +92,6 @@ export const TableUsers = ({ enpoint }) => {
   );
 };
 
-TableUsers.propTypes = {
+TableEmployees.propTypes = {
   enpoint: PropTypes.string.isRequired,
 };

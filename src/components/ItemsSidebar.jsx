@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import axios from "axios";
 import {
   ChartPie,
   Bolt,
@@ -9,9 +11,15 @@ import {
   MapPinHouse,
   UserPen,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 
 export const ItemsSidebar = () => {
+  // Función para realizar el logout
+  const logOut = async () => {
+    await axios.get(`http://localhost:5000/api/enova/users/logout`, {
+      withCredentials: true,
+    });
+  };
+
   return (
     <>
       {/* Menú de navegación del sidebar */}
@@ -98,13 +106,13 @@ export const ItemsSidebar = () => {
           <Bolt size={"18px"} />
           Ajustes
         </Link>
-        <Link
-          to="/logout"
+        <button
+          onClick={logOut}
           className="flex items-center gap-2 hover:bg-purple-600 p-3 text-gray-500 hover:text-white rounded-lg transition-colors duration-300 font-semibold"
         >
           <LogOut size={"18px"} />
           LogOut
-        </Link>
+        </button>
       </div>
     </>
   );
