@@ -14,12 +14,14 @@ import { InputPassword } from "./UI/InputPassword";
 import { ButtonSingle } from "./UI/ButtonSingle";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { SelectInputClass } from "./UI/SelectInputClass";
 
 export const ModalUniversal = () => {
   const token = useFetchToken();
   const [username, setUsername] = useState("");
   const [lastname, setLastname] = useState("");
   const [cc, setCc] = useState("");
+  const [site_id, setSite_Id] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confpassword, setConfPassword] = useState("");
@@ -41,6 +43,7 @@ export const ModalUniversal = () => {
           username,
           lastname,
           cc,
+          site_id,
           email,
           password,
           confpassword,
@@ -51,15 +54,19 @@ export const ModalUniversal = () => {
           },
         }
       );
-
       Swal.fire({
-        title: "Exito!",
-        text: "Usuario registrado con exito!",
+        title: "¡Éxito!",
+        text: "Usuario registrado con éxito!",
         icon: "success",
       });
     } catch (error) {
-      console.log(error);
-      return console.log("error al intenter registar al usuario");
+      if (error.response) {
+        Swal.fire({
+          title: "Error",
+          text: error.response.data.error,
+          icon: "error",
+        });
+      }
     }
   };
 
@@ -78,7 +85,7 @@ export const ModalUniversal = () => {
                 Registrar Usuario
               </ModalHeader>
               <ModalBody>
-                <form className="flex flex-col gap-3 ">
+                <form className="flex flex-col gap-3">
                   <InputSingle
                     label="Nombre"
                     placeholder={"Ingrese un nombre"}
@@ -96,6 +103,10 @@ export const ModalUniversal = () => {
                     placeholder={"Ingrese el número de cédula"}
                     value={cc}
                     onChange={(e) => setCc(e.target.value)}
+                  />
+                  <SelectInputClass
+                    value={site_id}
+                    onChange={(e) => setSite_Id(e.target.value)}
                   />
                   <InputSingle
                     label="Correo"
@@ -118,6 +129,7 @@ export const ModalUniversal = () => {
                   <ButtonSingle
                     onClick={registerUsers}
                     label="Registrar Usuario"
+                    type="submit"
                   />
                 </form>
               </ModalBody>

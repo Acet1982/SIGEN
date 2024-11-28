@@ -10,6 +10,7 @@ import { Employees } from "./pages/Employees";
 import { Consolidated } from "./pages/Consolidated";
 import { Sites } from "./pages/Sites";
 import { Settings } from "./pages/Settings";
+import { SelectInputClass } from "./components/UI/SelectInputClass";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/settings" element={<Settings />} />
           <Route path="/add-users" element={<FormAddUsers />} />
           <Route path="/login" element={<FormLogin />} />
+          <Route path="/prueba" element={<SelectInputClass />} />
         </Routes>
       </BrowserRouter>
     </>

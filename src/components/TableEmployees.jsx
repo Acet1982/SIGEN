@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useFetchToken } from "../hooks/useFetchToken.jsx";
 import { fetchData } from "../hooks/fetchData.jsx";
+import { ModalBasic } from "./ModalBasic.jsx";
 import { EditIcon } from "./UI/Icons/EditIcon";
-import PropTypes from "prop-types";
+import { DeleteIcon } from "./UI/Icons/DeleteIcon.jsx";
+import { UserPen } from "lucide-react";
 import {
   Table,
   TableHeader,
@@ -12,9 +15,6 @@ import {
   TableCell,
   Tooltip,
 } from "@nextui-org/react";
-import { UserPen } from "lucide-react";
-import { ModalBasic } from "./ModalBasic.jsx";
-import { DeleteIcon } from "./UI/Icons/DeleteIcon.jsx";
 
 const URL_USERS = "http://localhost:5000/api/enova/users/";
 
@@ -23,8 +23,8 @@ export const TableEmployees = ({ enpoint }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Control del modal
-  const [selectedUid, setSelectedUid] = useState(null); // UID del usuario seleccionado
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedUid, setSelectedUid] = useState(null);
 
   const handleOpenModal = (uid) => {
     setSelectedUid(uid);

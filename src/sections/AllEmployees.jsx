@@ -7,7 +7,7 @@ export const AllEmployees = () => {
   return (
     <>
       {/* Componente título de página */}
-      <TitlePages title={"All Administrators"} />
+      <TitlePages title={"All Employees"} />
 
       {/* Componente filtro de empleados */}
       <FilterUniversal
