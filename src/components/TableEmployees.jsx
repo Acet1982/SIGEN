@@ -13,6 +13,7 @@ import {
   TableCell,
   Tooltip,
 } from "@nextui-org/react";
+import { UserPen } from "lucide-react";
 
 const URL_USERS = "http://localhost:5000/api/enova/users/";
 
@@ -52,7 +53,7 @@ export const TableEmployees = ({ enpoint }) => {
   return (
     <div className="flex flex-col gap-3">
       <Table
-        color="warning"
+        color="secondary"
         selectionMode="single"
         defaultSelectedKeys={["0"]}
         aria-label="Example static collection table"
@@ -72,12 +73,17 @@ export const TableEmployees = ({ enpoint }) => {
               <TableCell>{user.email}</TableCell>
               <TableCell>
                 <div className="relative flex items-center gap-2">
-                  <Tooltip content="Edit user">
+                  <Tooltip content="Cambiar rol">
+                    <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                      <UserPen size={"20px"} />
+                    </span>
+                  </Tooltip>
+                  <Tooltip content="Editar usuario">
                     <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                       <EditIcon />
                     </span>
                   </Tooltip>
-                  <Tooltip color="danger" content="Delete user">
+                  <Tooltip color="danger" content="Eliminar usuario">
                     <span className="text-lg text-danger cursor-pointer active:opacity-50">
                       <DeleteIcon />
                     </span>

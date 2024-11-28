@@ -11,3 +11,14 @@ export const fetchData = async (url, options = {}) => {
     throw new Error(error.response?.data?.error);
   }
 };
+
+export const postData = async (url, options = {}) => {
+  try {
+    const response = await axios.post(url, {
+      ...options,
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.error);
+  }
+};

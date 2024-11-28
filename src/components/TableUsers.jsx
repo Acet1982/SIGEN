@@ -21,7 +21,6 @@ export const TableUsers = ({ enpoint }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedColor] = useState("warning");
 
   useEffect(() => {
     if (!token) return;
@@ -55,7 +54,7 @@ export const TableUsers = ({ enpoint }) => {
   return (
     <div className="flex flex-col gap-3">
       <Table
-        color={selectedColor}
+        color="secondary"
         selectionMode="single"
         defaultSelectedKeys={["0"]}
         aria-label="Example static collection table"
@@ -75,12 +74,12 @@ export const TableUsers = ({ enpoint }) => {
               <TableCell>{user.email}</TableCell>
               <TableCell>
                 <div className="relative flex items-center gap-2">
-                  <Tooltip content="Edit user">
+                  <Tooltip content="Editar usuario">
                     <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                       <EditIcon />
                     </span>
                   </Tooltip>
-                  <Tooltip color="danger" content="Delete user">
+                  <Tooltip color="danger" content="Eliminar usuario">
                     <span className="text-lg text-danger cursor-pointer active:opacity-50">
                       <DeleteIcon />
                     </span>

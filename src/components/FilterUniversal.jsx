@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { CalendarSearch } from "lucide-react";
 import { InputSelect } from "./UI/InputSelect";
-import { ButtonSingle } from "./UI/ButtonSingle";
 import { InputSearch } from "../components/UI/InputSearch";
+import { ModalUniversal } from "./ModalUniversal";
 
-export const FilterUniversal = ({ colorIcons, placeholder, label }) => {
+export const FilterUniversal = ({ colorIcons, placeholder }) => {
   return (
     <>
       {/* Filtro de nóminas por sedes, mes y periodo*/}
@@ -21,7 +21,7 @@ export const FilterUniversal = ({ colorIcons, placeholder, label }) => {
           />
         </div>
         <div className="col-span-1">
-          <ButtonSingle type={"submit"} label={label} />
+          <ModalUniversal />
         </div>
       </form>
     </>
@@ -31,5 +31,4 @@ export const FilterUniversal = ({ colorIcons, placeholder, label }) => {
 FilterUniversal.propTypes = {
   colorIcons: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
 };

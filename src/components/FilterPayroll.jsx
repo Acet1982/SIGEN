@@ -37,7 +37,11 @@ export const FilterPayroll = () => {
             <InputFilter placeholder="Filtros" colorIcons={"text-purple-600"} />
           </div>
           <div className="">
-            <ButtonSingle type={"submit"} label="Buscar" placeholder="Buscar" />
+            <ButtonSingle
+              type={"submit"}
+              label="Buscar"
+              placeholder="Buscar"
+            />
           </div>
         </div>
       </form>

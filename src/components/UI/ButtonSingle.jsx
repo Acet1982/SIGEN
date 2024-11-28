@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export const ButtonSingle = ({ label, type, onClick }) => {
   return (
-    <Button type={type} onClick={onClick} color="primary" variant="shadow">
+    <Button type={type} onClick={onClick} color="secondary" variant="shadow">
       {label}
     </Button>
   );
