@@ -1,23 +1,43 @@
-import { useFetchToken } from "../hooks/useFetchToken.jsx";
-import { useFetchData } from "../hooks/useFetchData.jsx";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useFetchToken } from "../hooks/useFetchToken";
 
 export const CardPayroll = () => {
+  const [payrolls, setPayrolls] = useState([]);
   const token = useFetchToken();
-  const { data, loading, error } = useFetchData("payrolls", token);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  console.log(token);
+  useEffect(() => {
+    if (!token) return;
+    const getPayrolls = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/enova/payrolls/review",
+          {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log("Datos de nómina:", response.data);
+        setPayrolls(response.data.msg);
+      } catch (error) {
+        console.error(
+          "Error al obtener la nómina:",
+          error.response?.data.error
+        );
+      }
+    };
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+    getPayrolls();
+  }, [token]);
 
   return (
     <>
-      {data.msg?.map((payroll) => (
+      {payrolls.map((payroll) => (
         <Link
           key={payroll.pid}
           to="/hola"
@@ -35,7 +55,15 @@ export const CardPayroll = () => {
               <span className="text-xs py-1 px-2 bg-purple-100 text-purple-600 font-bold rounded-md">
                 {payroll.period_name}
               </span>
-              <span className="text-xs py-1 px-2 bg-green-100 text-green-600 font-bold rounded-md">
+              <span
+                className={`text-xs py-1 px-2  ${
+                  payroll.state_id === 1
+                    ? "bg-orange-100 text-orange-600"
+                    : payroll.state_id === 2
+                    ? "bg-red-100 text-red-600"
+                    : "bg-green-100 text-green-600"
+                }  font-bold rounded-md`}
+              >
                 {payroll.state_name}
               </span>
             </h1>
@@ -59,5 +87,6 @@ export const CardPayroll = () => {
 };
 
 CardPayroll.propTypes = {
-  enpoint: PropTypes.string.isRequired,
+  endpoint: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired, // Validamos que el token sea obligatorio
 };

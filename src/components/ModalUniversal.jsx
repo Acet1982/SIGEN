@@ -129,7 +129,7 @@ export const ModalUniversal = () => {
                   <ButtonSingle
                     onClick={registerUsers}
                     label="Registrar Usuario"
-                    type="submit"
+                    type="button"
                   />
                 </form>
               </ModalBody>

@@ -5,6 +5,7 @@ import { DescriptionPage } from "../components/UI/DescriptionPage";
 import { CardPayroll } from "../components/CardPayroll";
 
 export const AllPayrolls = () => {
+
   return (
     <>
       {/* Componente título de página */}
@@ -20,7 +21,12 @@ export const AllPayrolls = () => {
       <DescriptionPage description={"Nóminas publicadas!"} by={"Mes"} />
 
       {/* Componente tarjetas de nóminas */}
-      <CardPayroll enpoint="payrolls" />
+
+      <CardPayroll />
+
+      {/* {data && data.role_id === 2 && (
+        <CardPayroll token={token} />
+      )} */}
     </>
   );
 };
