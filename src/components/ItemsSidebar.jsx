@@ -25,7 +25,7 @@ export const ItemsSidebar = () => {
       if (!token) return;
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/enova/users/profile",
+          "https://sigen-backend-zebi.onrender.com/api/enova/users/profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -43,9 +43,12 @@ export const ItemsSidebar = () => {
 
   // Función para realizar el logout
   const logOut = async () => {
-    await axios.get(`http://localhost:5000/api/enova/users/logout`, {
-      withCredentials: true,
-    });
+    await axios.get(
+      `https://sigen-backend-zebi.onrender.com/api/enova/users/logout`,
+      {
+        withCredentials: true,
+      }
+    );
     navigate("/");
   };
 

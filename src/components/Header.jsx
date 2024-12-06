@@ -15,7 +15,7 @@ export const Header = () => {
       if (!token) return;
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/enova/users/profile",
+          "https://sigen-backend-zebi.onrender.com/api/enova/users/profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,

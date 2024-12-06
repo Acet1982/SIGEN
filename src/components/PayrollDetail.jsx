@@ -15,7 +15,7 @@ import {
   Tooltip,
 } from "@nextui-org/react";
 
-const URL_PD = `http://localhost:5000/api/enova/payrolls/details/`;
+const URL_PD = `https://sigen-backend-zebi.onrender.com/api/enova/payrolls/details/`;
 
 export const PayrollDetail = () => {
   const token = useFetchToken();
