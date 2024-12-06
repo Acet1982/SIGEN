@@ -4,7 +4,6 @@ import axios from "axios";
 export const fetchData = async (url, options = {}) => {
   try {
     const response = await axios.get(url, {
-      withCredentials: true,
       ...options,
     });
     return response.data;
