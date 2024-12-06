@@ -1,12 +1,10 @@
-import { FormAddPayroll } from "../components/FormAddPayroll";
-import { TitlePages } from "../components/UI/TittlePages";
+import { AllSites } from "../sections/AllSites";
 import { Layout } from "./Layout";
 
 export const Sites = () => {
   return (
     <Layout>
-      <TitlePages title="Sites" />
-      <FormAddPayroll />
+      <AllSites />
     </Layout>
   );
 };

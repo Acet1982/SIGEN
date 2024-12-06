@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFetchToken } from "../hooks/useFetchToken";
 import {
   Modal,
@@ -15,8 +15,10 @@ import { ButtonSingle } from "./UI/ButtonSingle";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { SelectInputClass } from "./UI/SelectInputClass";
+import { useNavigate } from "react-router-dom";
 
 export const ModalUniversal = () => {
+  const navigate = useNavigate();
   const token = useFetchToken();
   const [username, setUsername] = useState("");
   const [lastname, setLastname] = useState("");
@@ -27,13 +29,45 @@ export const ModalUniversal = () => {
   const [confpassword, setConfPassword] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [size, setSize] = useState("md");
+  const [profile, setProfile] = useState([]);
 
   const handleOpen = () => {
     setSize("3xl");
     onOpen();
   };
 
+  // Función para cargar el perfil del usuario
+  useEffect(() => {
+    const Profile = async () => {
+      if (!token) return;
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/enova/users/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(response.data);
+        setProfile(response.data);
+      } catch (error) {
+        console.log(error.response.data.error);
+      }
+    };
+    Profile();
+  }, [token]);
+
   const registerUsers = async () => {
+    if (profile.role_id === 1 && password !== confpassword) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "Las contraseñas no coinciden.",
+        icon: "error",
+      });
+      return;
+    }
+
     try {
       if (!token) return;
 
@@ -44,11 +78,12 @@ export const ModalUniversal = () => {
           lastname,
           cc,
           site_id,
-          email,
-          password,
+          email: profile.role_id === 1 ? email : null,
+          password: profile.role_id === 1 ? password : null,
           confpassword,
         },
         {
+          withCredentials: true,
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -59,6 +94,7 @@ export const ModalUniversal = () => {
         text: "Usuario registrado con éxito!",
         icon: "success",
       });
+      navigate("/employees");
     } catch (error) {
       if (error.response) {
         Swal.fire({
@@ -108,24 +144,28 @@ export const ModalUniversal = () => {
                     value={site_id}
                     onChange={(e) => setSite_Id(e.target.value)}
                   />
-                  <InputSingle
-                    label="Correo"
-                    placeholder={"Ingrese un correo electrónico"}
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <InputPassword
-                    label="Contraseña"
-                    placeholder="Crea una contraseña segura"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <InputPassword
-                    label="Confirmar contraseña"
-                    placeholder="Repita la contraseña"
-                    value={confpassword}
-                    onChange={(e) => setConfPassword(e.target.value)}
-                  />
+                  {profile.role_id === 1 && (
+                    <>
+                      <InputSingle
+                        label="Correo"
+                        placeholder={"Ingrese un correo electrónico"}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                      <InputPassword
+                        label="Contraseña"
+                        placeholder="Crea una contraseña segura"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                      <InputPassword
+                        label="Confirmar contraseña"
+                        placeholder="Repita la contraseña"
+                        value={confpassword}
+                        onChange={(e) => setConfPassword(e.target.value)}
+                      />
+                    </>
+                  )}
                   <ButtonSingle
                     onClick={registerUsers}
                     label="Registrar Usuario"

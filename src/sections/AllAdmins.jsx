@@ -2,8 +2,10 @@ import { FilterUniversal } from "../components/FilterUniversal";
 import { TitlePages } from "../components/UI/TittlePages";
 import { TableUsers } from "../components/TableUsers";
 import { DescriptionPage } from "../components/UI/DescriptionPage";
+import { useFetchToken } from "../hooks/useFetchToken";
 
 export const AllAdmins = () => {
+  const token = useFetchToken();
   return (
     <>
       {/* Componente título de página */}
@@ -22,7 +24,7 @@ export const AllAdmins = () => {
       {/* Componente tabla de administradores */}
       <div className="grid grid-cols-4 gap-4">
         <div className="col-span-4">
-          <TableUsers enpoint="administrators" />
+          <TableUsers enpoint="administrators" token={token} />
         </div>
       </div>
     </>

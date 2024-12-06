@@ -10,6 +10,9 @@ import { Employees } from "./pages/Employees";
 import { Consolidated } from "./pages/Consolidated";
 import { Sites } from "./pages/Sites";
 import { Settings } from "./pages/Settings";
+import { AddPayrollDetail } from "./sections/AddPayrollDetail";
+import { LoadPayroll } from "./pages/LoadPayroll";
+import { EditPayrollEmployee } from "./sections/EditPayrollEmployee";
 
 function App() {
   return (
@@ -22,10 +25,19 @@ function App() {
           <Route path="/coordinators" element={<Coordinators />} />
           <Route path="/employees" element={<Employees />} />
           <Route path="/payrolls" element={<Payrolls />} />
+          <Route path={"/payrolls/details/:pid"} element={<LoadPayroll />} />
+          <Route
+            path={"/payrolls/details/:pid/employee/:eid"}
+            element={<AddPayrollDetail />}
+          />
+          <Route
+            path={"payrolls/details/update/:pdid"}
+            element={<EditPayrollEmployee />}
+          />
           <Route path="/consolidated" element={<Consolidated />} />
           <Route path="/sites" element={<Sites />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/add-users" element={<FormAddUsers />} />
+          <Route path="/add-Info/:eid" element={<FormAddUsers />} />
           <Route path="/login" element={<FormLogin />} />
         </Routes>
       </BrowserRouter>

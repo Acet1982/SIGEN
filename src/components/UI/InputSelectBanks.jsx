@@ -2,13 +2,14 @@ import PropTypes from "prop-types";
 
 // const URL_USERS = "http://localhost:5000/api/enova/users/";
 
-export const InputSelect = ({
-  Icon,
-  colorIcons,
-  value,
-  onChange,
-}) => {
-  const days = [0,1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+export const InputSelectBanks = ({ Icon, colorIcons, value, onChange }) => {
+  const banks = [
+    { bid: 0, bank: "SELECCIONE UN BANCO" },
+    { bid: 1, bank: "Bancolombia" },
+    { bid: 2, bank: "Nequi" },
+    { bid: 3, bank: "Davivienda" },
+    { bid: 4, bank: "Banco de bogota" },
+  ];
   return (
     <div className="relative ">
       {Icon && (
@@ -23,9 +24,9 @@ export const InputSelect = ({
         value={value}
         onChange={onChange}
       >
-        {days.map((day) => (
-          <option key={day} value={day}>
-            {day}
+        {banks.map((bank) => (
+          <option key={bank.bid} value={bank.bid}>
+            {bank.bank}
           </option>
         ))}
       </select>
@@ -33,7 +34,7 @@ export const InputSelect = ({
   );
 };
 
-InputSelect.propTypes = {
+InputSelectBanks.propTypes = {
   Icon: PropTypes.object.isRequired,
   colorIcons: PropTypes.string,
   value: PropTypes.number,

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useFetchToken } from "../hooks/useFetchToken.jsx";
 import { fetchData } from "../hooks/fetchData.jsx";
 import { EditIcon } from "./UI/Icons/EditIcon";
 import { DeleteIcon } from "./UI/Icons/DeleteIcon";
+import { Loader } from "../components/UI/Loader.jsx";
 import PropTypes from "prop-types";
 import {
   Table,
@@ -16,8 +16,7 @@ import {
 
 const URL_USERS = "http://localhost:5000/api/enova/users/";
 
-export const TableUsers = ({ enpoint }) => {
-  const token = useFetchToken();
+export const TableUsers = ({ enpoint, token }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -28,6 +27,7 @@ export const TableUsers = ({ enpoint }) => {
     const loadUsers = async () => {
       try {
         const result = await fetchData(`${URL_USERS}${enpoint}`, {
+          withCredentials: true,
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -44,7 +44,11 @@ export const TableUsers = ({ enpoint }) => {
   }, [token, enpoint]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <Loader />
+      </>
+    );
   }
 
   if (error) {
@@ -96,4 +100,5 @@ export const TableUsers = ({ enpoint }) => {
 
 TableUsers.propTypes = {
   enpoint: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired, // Nueva prop para el token
 };

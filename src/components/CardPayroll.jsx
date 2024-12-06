@@ -4,17 +4,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useFetchToken } from "../hooks/useFetchToken";
 
-export const CardPayroll = () => {
+export const CardPayroll = ({endpoint}) => {
   const [payrolls, setPayrolls] = useState([]);
   const token = useFetchToken();
 
-  console.log(token);
   useEffect(() => {
     if (!token) return;
     const getPayrolls = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/enova/payrolls/review",
+          `http://localhost:5000/api/enova/payrolls${endpoint}`,
           {
             withCredentials: true,
             headers: {
@@ -22,7 +21,7 @@ export const CardPayroll = () => {
             },
           }
         );
-        console.log("Datos de nómina:", response.data);
+        console.log("Datos de nómina:", response.data.msg);
         setPayrolls(response.data.msg);
       } catch (error) {
         console.error(
@@ -40,7 +39,7 @@ export const CardPayroll = () => {
       {payrolls.map((payroll) => (
         <Link
           key={payroll.pid}
-          to="/hola"
+          to={`/payrolls/details/${payroll.pid}`}
           className="bg-white rounded-3xl p-8 flex flex-col md:flex-row gap-8 w-full drop-shadow-lg cursor-pointer border-2 border-transparent hover:border-purple-400 transition-all mb-4"
         >
           {/* Imagén de nómina */}
@@ -88,5 +87,5 @@ export const CardPayroll = () => {
 
 CardPayroll.propTypes = {
   endpoint: PropTypes.string.isRequired,
-  token: PropTypes.string.isRequired, // Validamos que el token sea obligatorio
+  token: PropTypes.string.isRequired,
 };
