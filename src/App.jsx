@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { FormLogin } from "./components/FormLogin";
 import { FormAddUsers } from "./components/FormAddUsers";
 import { Payrolls } from "./pages/Payrolls";
-import { Index } from "./pages";
+import { Index } from "./pages/Index";
 import { Dashboard } from "./pages/Dashboard";
 import { Administrators } from "./pages/Administrators";
 import { Coordinators } from "./pages/Coordinators";
