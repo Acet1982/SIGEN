@@ -17,6 +17,7 @@ export const useFetchData = (endpoint, token) => {
     const loadUsers = async () => {
       try {
         const result = await fetchData(`${URL_API}$"review"`, {
+          withCredentials: true,
           headers: {
             Authorization: `Bearer ${token}`,
           },
