@@ -42,7 +42,7 @@ export const ModalUniversal = () => {
       if (!token) return;
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/enova/users/profile",
+          "https://sigen-backend-zebi.onrender.com/api/enova/users/profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -72,7 +72,7 @@ export const ModalUniversal = () => {
       if (!token) return;
 
       await axios.post(
-        "http://localhost:5000/api/enova/users/register",
+        "https://sigen-backend-zebi.onrender.com/api/enova/users/register",
         {
           username,
           lastname,

@@ -13,7 +13,7 @@ export const CardPayroll = ({endpoint}) => {
     const getPayrolls = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/enova/payrolls${endpoint}`,
+          `https://sigen-backend-zebi.onrender.com/api/enova/payrolls${endpoint}`,
           {
             withCredentials: true,
             headers: {
