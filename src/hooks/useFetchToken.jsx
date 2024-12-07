@@ -10,7 +10,7 @@ export const useFetchToken = () => {
         const response = await fetchData(
           `https://sigen-backend-zebi.onrender.com/api/enova/users/refresh`,
           {
-            withCredentials: true, // Asegúrate de que esto sea necesario
+            withCredentials: true,
           }
         );
         setToken(response.token);
