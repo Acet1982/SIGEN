@@ -9,7 +9,6 @@ export const useFetchData = (endpoint, token) => {
   const [error, setError] = useState(null);
 
   console.log(token);
-  console.log("hola kaiser");
 
   useEffect(() => {
     if (!token) return;
@@ -17,7 +16,6 @@ export const useFetchData = (endpoint, token) => {
     const loadUsers = async () => {
       try {
         const result = await fetchData(`${URL_API}$"review"`, {
-          withCredentials: true,
           headers: {
             Authorization: `Bearer ${token}`,
           },

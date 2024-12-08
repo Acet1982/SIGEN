@@ -15,7 +15,7 @@ export const useFetchToken = () => {
         );
         setToken(response.token);
       } catch (error) {
-        console.error("Error al obtener el token:", error.message);
+        console.error("Error al obtener el token:", error);
       }
     };
 

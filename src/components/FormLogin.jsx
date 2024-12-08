@@ -21,7 +21,6 @@ export const FormLogin = () => {
     if (!password) return setError("La contraseña es requerida.");
     setError("");
 
-    // http://localhost:5000/api/enova/users/login
     try {
       await axios.post(
         "https://sigen-backend-zebi.onrender.com/api/enova/users/login",

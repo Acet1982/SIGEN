@@ -16,8 +16,9 @@ import { EditPayrollEmployee } from "./sections/EditPayrollEmployee";
 function App() {
   return (
     <>
-      <BrowserRouter basename="/">
+      <BrowserRouter>
         <Routes>
+          <Route path="/" element={<FormLogin />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/administrators" element={<Administrators />} />
           <Route path="/coordinators" element={<Coordinators />} />
