@@ -56,7 +56,7 @@ export const Header = () => {
           </li>
           {profile && (
             <li key={profile.uid}>
-              <Link to="/" className="flex items-center gap-1">
+              <Link className="flex items-center gap-1">
                 {`${profile.username} ${profile.lastname}`}{" "}
                 <ChevronDown size={"18px"} />
               </Link>

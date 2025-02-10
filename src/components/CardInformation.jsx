@@ -1,6 +1,6 @@
 import { DollarSign } from "lucide-react";
 
-export const CardInformation = () => {
+export const CardInformation = ({text}) => {
   return (
     <div>
       <div className="bg-white p-6 rounded-lg">
@@ -13,6 +13,7 @@ export const CardInformation = () => {
           <p className="text-xs text-muted-foreground">
             +20.1% respecto al mes anterior
           </p>
+          <p>{text}</p>
         </div>
       </div>
     </div>

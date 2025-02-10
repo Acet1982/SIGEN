@@ -1,27 +1,56 @@
-import { TitlePages } from "./UI/TittlePages";
-import { ButtonSingle } from "./UI/ButtonSingle";
-import { InputSingle } from "./UI/InputSingle";
-import { InputSelectBanks } from "./UI/InputSelectBanks";
-import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useFetchToken } from "../hooks/useFetchToken";
 import Swal from "sweetalert2";
 
-export const FormAddUsers = () => {
-  const navigate = useNavigate();
-  const token = useFetchToken();
-  const location = useLocation();
-  const uid = location.pathname.split("/")[4];
-  const [bank_id, setBank_Id] = useState(0);
-  const [account_number, setAccount_Number] = useState(0);
-  const [monthly_salary, setMonthly_Salary] = useState(0);
+export const FormAddUser = () => {
+  const [formData, setFormData] = useState({
+    userName: "",
+    lastName: "",
+    idNumber: "",
+    cellphone: "",
+    cellphoneContact: "",
+    email: "",
+    password: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const LoadInfoEmployee = async () => {
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+
     try {
+      // Obtén el token desde las cookies
+      const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("refreshtoken="))
+        ?.split("=")[1];
+
+      if (!token) {
+        Swal.fire({
+          title: "Error",
+          text: "Token no encontrado en las cookies.",
+          icon: "error",
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      // Realiza la solicitud con el Bearer Token
       const response = await axios.post(
-        `https://sigen-backend-zebi.onrender.com/api/enova/employees/create/${uid}`,
-        { user_id: uid, bank_id, account_number, monthly_salary },
+        "http://localhost:4000/users",
+        {
+          ...formData,
+          imagePath: "", // Campo opcional
+        },
         {
           withCredentials: true,
           headers: {
@@ -29,46 +58,140 @@ export const FormAddUsers = () => {
           },
         }
       );
+
       Swal.fire({
-        title: "Exito!",
+        title: "Éxito!",
         text: response.data.msg,
         icon: "success",
       });
-      navigate("/employees");
+
+      setIsLoading(false);
+      navigate("/users");
     } catch (error) {
+      setIsLoading(false);
       Swal.fire({
-        title: "Fallo!",
-        text: error.response.data.error,
+        title: "Error!",
+        text:
+          error.response?.data?.error || "No se pudo conectar con el servidor.",
         icon: "error",
       });
     }
   };
+
   return (
-    <div className="w-[450px] m-auto border-1 p-4 rounded-2xl text-center">
-      <TitlePages title="Registrar información de empleados" />
-      <form className="flex flex-col gap-3 ">
-        <p>Seleccione un banco</p>
-        <InputSelectBanks
-          value={bank_id}
-          onChange={(e) => setBank_Id(e.target.value)}
-        />
-        <InputSingle
-          label="Número de cuenta"
-          placeholder={"Ingrese el número de cuenta"}
-          value={account_number}
-          onChange={(e) => setAccount_Number(e.target.value)}
-        />
-        <InputSingle
-          label="Honorarios Mensuales"
-          placeholder="Ingrese los honorarios Mensuales"
-          value={monthly_salary}
-          onChange={(e) => setMonthly_Salary(e.target.value)}
-        />
-        <ButtonSingle
-          onClick={LoadInfoEmployee}
-          label="Registrar datos del empleado"
-        />
-      </form>
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
+        <h1 className="text-2xl font-bold text-center text-gray-800">
+          Agregar Usuario
+        </h1>
+        <p className="text-center text-gray-600 mb-4">
+          Ingresa los datos para crear un nuevo usuario.
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Input Fields */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Nombre
+            </label>
+            <input
+              type="text"
+              name="userName"
+              value={formData.userName}
+              onChange={handleChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Apellido
+            </label>
+            <input
+              type="text"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Cédula
+            </label>
+            <input
+              type="text"
+              name="idNumber"
+              value={formData.idNumber}
+              onChange={handleChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Celular
+            </label>
+            <input
+              type="text"
+              name="cellphone"
+              value={formData.cellphone}
+              onChange={handleChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Celular de Contacto (Opcional)
+            </label>
+            <input
+              type="text"
+              name="cellphoneContact"
+              value={formData.cellphoneContact}
+              onChange={handleChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Contraseña
+            </label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm"
+              required
+            />
+          </div>
+
+          <div className="pt-4">
+            <button
+              type="submit"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+              disabled={isLoading}
+            >
+              {isLoading ? "Guardando..." : "Agregar Usuario"}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
