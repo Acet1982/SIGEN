@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useFetchToken } from "../hooks/useFetchToken.jsx";
 import { fetchData } from "../hooks/fetchData.jsx";
 
-const URL_PD = `https://sigen-backend-zebi.onrender.com/api/enova/payrolls/details/`;
+const URL_PD = `https://sigen.onrender.com/api/enova/payrolls/details/`;
 
 export const TopEmployees = () => {
   const token = useFetchToken();

@@ -16,7 +16,7 @@ import { DeleteIcon } from "../components/UI/Icons/DeleteIcon";
 import { ButtonSingle } from "../components/UI/ButtonSingle.jsx";
 import axios from "axios";
 
-const URL_SITES = "https://sigen-backend-zebi.onrender.com/api/enova/sites";
+const URL_SITES = "https://sigen.onrender.com/api/enova/sites";
 
 export const Sites = () => {
   const [data, setData] = useState([]);
@@ -51,7 +51,7 @@ export const Sites = () => {
 
   const createSite = async () => {
     await axios.post(
-      "https://sigen-backend-zebi.onrender.com/api/enova/sites/create",
+      "https://sigen.onrender.com/api/enova/sites/create",
       { sitename },
       {
         withCredentials: true,
@@ -64,7 +64,7 @@ export const Sites = () => {
 
   const deleteSite = async (sid) => {
     await axios.delete(
-      `https://sigen-backend-zebi.onrender.com/api/enova/sites/delete/${sid}`,
+      `https://sigen.onrender.com/api/enova/sites/delete/${sid}`,
       {
         withCredentials: true,
         headers: {

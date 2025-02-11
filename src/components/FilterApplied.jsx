@@ -11,7 +11,7 @@ export const FilterApplied = () => {
     console.log(token)
     try {
       const response = await axios.post(
-        `https://sigen-backend-zebi.onrender.com/api/enova/payrolls/create`,
+        `https://sigen.onrender.com/api/enova/payrolls/create`,
         {},
         {
           withCredentials: true,

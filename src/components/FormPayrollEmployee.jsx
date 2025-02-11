@@ -54,7 +54,7 @@ export const FormPayrollEmployee = () => {
     const infoUser = async () => {
       try {
         const response = await axios.get(
-          `https://sigen-backend-zebi.onrender.com/api/enova/users/info/${uid}`
+          `https://sigen.onrender.com/api/enova/users/info/${uid}`
         );
 
         // Verifica si el servidor devolvió un mensaje o error
@@ -77,7 +77,7 @@ export const FormPayrollEmployee = () => {
     const infoEmployee = async () => {
       try {
         const response = await axios.get(
-          `https://sigen-backend-zebi.onrender.com/api/enova/employees/${uid}`,
+          `https://sigen.onrender.com/api/enova/employees/${uid}`,
           {
             withCredentials: true,
             headers: {
@@ -99,7 +99,7 @@ export const FormPayrollEmployee = () => {
   const saveDetailPayrollEmployee = async () => {
     try {
       const response = await axios.post(
-        `https://sigen-backend-zebi.onrender.com/api/enova/payrolls/details/${pid}/employee/${employeeinfo.eid}`,
+        `https://sigen.onrender.com/api/enova/payrolls/details/${pid}/employee/${employeeinfo.eid}`,
         {
           days_worked,
           days_sunday,

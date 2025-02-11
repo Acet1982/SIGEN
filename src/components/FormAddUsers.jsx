@@ -46,7 +46,7 @@ export const FormAddUser = () => {
 
       // Realiza la solicitud con el Bearer Token
       const response = await axios.post(
-        "http://localhost:4000/users",
+        "https://sigen.onrender.com/users",
         {
           ...formData,
           imagePath: "", // Campo opcional

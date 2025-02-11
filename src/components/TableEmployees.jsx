@@ -26,7 +26,7 @@ import {
 } from "@nextui-org/react";
 import axios from "axios";
 
-const URL_USERS = "https://sigen-backend-zebi.onrender.com/api/enova/users/";
+const URL_USERS = "https://sigen.onrender.com/api/enova/users/";
 
 export const TableEmployees = ({ enpoint }) => {
   const token = useFetchToken();
@@ -51,7 +51,7 @@ export const TableEmployees = ({ enpoint }) => {
       if (!token) return;
       try {
         const response = await axios.get(
-          "https://sigen-backend-zebi.onrender.com/api/enova/users/profile",
+          "https://sigen.onrender.com/api/enova/users/profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -89,7 +89,7 @@ export const TableEmployees = ({ enpoint }) => {
   const updateRoleAdmin = async (to, uid) => {
     try {
       const userUpdated = await axios.put(
-        `https://sigen-backend-zebi.onrender.com/api/enova/users/update-role-${to}/${uid}`,
+        `https://sigen.onrender.com/api/enova/users/update-role-${to}/${uid}`,
         {},
         {
           headers: {

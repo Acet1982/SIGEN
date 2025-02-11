@@ -31,7 +31,7 @@ export const ModalUpdateUser = ({ uid, isOpen, onClose }) => {
       if (!uid || !token) return;
       try {
         const response = await axios.get(
-          `https://sigen-backend-zebi.onrender.com/api/enova/users/${uid}`,
+          `https://sigen.onrender.com/api/enova/users/${uid}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -72,7 +72,7 @@ export const ModalUpdateUser = ({ uid, isOpen, onClose }) => {
       };
 
       await axios.put(
-        `https://sigen-backend-zebi.onrender.com/api/enova/users/update/${uid}`,
+        `https://sigen.onrender.com/api/enova/users/update/${uid}`,
         payload,
         {
           headers: {

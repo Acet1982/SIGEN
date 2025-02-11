@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { FormLogin } from "./components/FormLogin";
-import { FormAddUsers } from "./components/FormAddUsers";
+import { FormAddUser } from "./components/FormAddUsers";
 import { Payrolls } from "./pages/Payrolls";
 import { Dashboard } from "./pages/Dashboard";
 import { Administrators } from "./pages/Administrators";
@@ -36,7 +36,7 @@ function App() {
           <Route path="/consolidated" element={<Consolidated />} />
           <Route path="/sites" element={<Sites />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/add-Info/:eid" element={<FormAddUsers />} />
+          <Route path="/add-Info/:eid" element={<FormAddUser />} />
           <Route path="/login" element={<FormLogin />} />
         </Routes>
       </BrowserRouter>

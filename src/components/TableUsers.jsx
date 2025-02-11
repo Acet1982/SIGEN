@@ -14,7 +14,7 @@ import {
   Tooltip,
 } from "@nextui-org/react";
 
-const URL_USERS = "https://sigen-backend-zebi.onrender.com/api/enova/users/";
+const URL_USERS = "https://sigen.onrender.com/api/enova/users/";
 
 export const TableUsers = ({ enpoint, token }) => {
   const [data, setData] = useState(null);

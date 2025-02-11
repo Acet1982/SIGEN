@@ -17,7 +17,7 @@ export const ModalBasic = ({ isOpen, onClose, uid }) => {
   const deleteUser = async () => {
     try {
       await axios.delete(
-        `https://sigen-backend-zebi.onrender.com/api/enova/users/delete/${uid}`,
+        `https://sigen.onrender.com/api/enova/users/delete/${uid}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

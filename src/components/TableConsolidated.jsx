@@ -12,7 +12,7 @@ import {
   TableCell,
 } from "@nextui-org/react";
 
-const URL_PD = `https://sigen-backend-zebi.onrender.com/api/enova/payrolls/details/`;
+const URL_PD = `https://sigen.onrender.com/api/enova/payrolls/details/`;
 
 export const TableConsolidated = () => {
   const token = useFetchToken();

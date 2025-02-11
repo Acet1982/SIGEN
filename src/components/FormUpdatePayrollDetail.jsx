@@ -58,7 +58,7 @@ export const FormUpdatePayrollDetail = () => {
     const infoUser = async () => {
       try {
         const response = await axios.get(
-          `https://sigen-backend-zebi.onrender.com/api/enova/payrolls/details/employee/${pdid}`
+          `https://sigen.onrender.com/api/enova/payrolls/details/employee/${pdid}`
         );
 
         const data = response.data.msg;
@@ -113,7 +113,7 @@ export const FormUpdatePayrollDetail = () => {
   const saveDetailPayrollEmployee = async () => {
     try {
       const response = await axios.put(
-        `https://sigen-backend-zebi.onrender.com/api/enova/payrolls/details/update/${pdid}`,
+        `https://sigen.onrender.com/api/enova/payrolls/details/update/${pdid}`,
         {
           days_worked,
           days_sunday,

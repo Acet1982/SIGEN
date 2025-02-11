@@ -36,7 +36,7 @@ useEffect(() => {
   const getPayrollData = async () => {
     try {
       const response = await axios.get(
-        `https://sigen-backend-zebi.onrender.com/api/enova/payrolls${endpoint}`,
+        `https://sigen.onrender.com/api/enova/payrolls${endpoint}`,
         {
           withCredentials: true,
           headers: {
