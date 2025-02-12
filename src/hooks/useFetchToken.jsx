@@ -8,7 +8,7 @@ export const useFetchToken = () => {
     const resToken = async () => {
       try {
         const response = await fetchData(
-          `https://sigen-backend-zebi.onrender.com/api/enova/users/refresh`,
+          `https://sigen.onrender.com/api/enova/users/refresh`,
           {
             withCredentials: true,
           }

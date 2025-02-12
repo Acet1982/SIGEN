@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchData } from "./fetchData";
 
-const URL_API = "https://sigen-backend-zebi.onrender.com/api/enova/payrolls/";
+const URL_API = "https://sigen.onrender.com/api/enova/payrolls/";
 
 export const useFetchData = (endpoint, token) => {
   const [data, setData] = useState(null);
